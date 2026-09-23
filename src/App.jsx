@@ -9,10 +9,13 @@ function App() {
   const [showForm, setShowForm] = useState(false);
   const [editProduct, setEditProduct] = useState(null);
 
+  const fetchProducts = async () => {
+    const response = await getAllProducts();
+    setProductList(response.data);
+  };
+
   useEffect(() => {
-    getAllProducts()
-      .then((data) => setProductList(data))
-      .catch((error) => console.error("Error fetching products:", error));
+    fetchProducts();
   }, []);
 
   return (
