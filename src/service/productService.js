@@ -1,7 +1,23 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8080/api/products";
+const API_URL = "http://localhost:8080/api/products";
 
-export const getAllProducts = () => {
-  return axios.get(BASE_URL);
+export const getAllProducts = async () => {
+  const response = await axios.get(API_URL);
+  return response.data;
 };
+
+export const crateProduct = async (product) => {
+  const response = await axios.post(API_URL, product);
+  return response.data;
+};
+
+export const updateProduct = async (product,id) => {
+    const response = await axios.put(API_URL/{id})
+    return response.data;
+}
+
+export const deleteProduct = async (id) => {
+    const response = await axios.delete(API_URL/{id})
+    return response.data;
+}

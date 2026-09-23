@@ -2,21 +2,31 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import ProductList from "./components/ProductList";
 import ProductForm from "./components/ProductForm";
-import { getAllProducts } from "./service/productService";
+import { getAllProducts ,crateProduct } from "./service/productService";
 
 function App() {
   const [productList, setProductList] = useState([]);
   const [showForm, setShowForm] = useState(false);
-  const [editProduct, setEditProduct] = useState(null);
+  const [editProduct, setEditProduct , updateProduct , deleteProduct] = useState(null);
 
   const fetchProducts = async () => {
     const response = await getAllProducts();
-    setProductList(response.data);
+    setProductList(response);
   };
 
   useEffect(() => {
     fetchProducts();
   }, []);
+
+  const addProduct = async (product)=>{
+    await crateProduct(product)
+    await fetchProducts();
+    setShowForm(false)
+  }
+
+  
+
+
 
   return (
     <>
@@ -34,15 +44,15 @@ function App() {
       {showForm && (
         <ProductForm
           setShowForm={setShowForm}
-          // addProduct={addProduct}
+          addProduct={addProduct}
           editProduct={editProduct}
-          // updateProduct={updateProduct}
+          updateProduct={updateProduct}
         />
       )}
 
       <ProductList
         productList={productList}
-        // deleteProdcut={deleteProdcut}
+        deleteProdcut={deleteProdcut}
         setEditProduct={setEditProduct}
         setShowForm={setShowForm}
       />

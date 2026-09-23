@@ -5,18 +5,16 @@ const ProductForm = ({ setShowForm, addProduct, editProduct, updateProduct }) =>
     name: "",
     price: "",
     category: "",
-    image: "",
+    imageUrl: "",
   });
 
-
-  
   useEffect(() => {
     if (editProduct) {
       setFormData({
         name: editProduct.name || "",
         price: editProduct.price || "",
         category: editProduct.category || "",
-        image: editProduct.imageUrl || editProduct.image || "",
+        imageUrl: editProduct.imageUrl || "",
       });
     }
   }, [editProduct]);
@@ -41,7 +39,7 @@ const ProductForm = ({ setShowForm, addProduct, editProduct, updateProduct }) =>
       name: "",
       price: "",
       category: "",
-      image: "",
+      imageUrl: "",
     });
   };
 
@@ -81,13 +79,13 @@ const ProductForm = ({ setShowForm, addProduct, editProduct, updateProduct }) =>
         />
         <br />
 
-        <label htmlFor="image">Enter Product Image URL : </label>
+        <label htmlFor="imageUrl">Enter Product Image URL : </label>
         <input
           type="text"
-          id="image"
-          name="image"
+          id="imageUrl"
+          name="imageUrl"
           placeholder="product image"
-          value={formData.image}
+          value={formData.imageUrl}
           onChange={handleChange}
         />
         <br />
